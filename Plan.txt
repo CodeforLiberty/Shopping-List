@@ -1,0 +1,78 @@
+ //Requirements
+// In terms of user experience, your shopping list app must allow users to:
+enter items they need to purchase by entering text and hitting "Return" or 
+clicking the "Add item" button
+ 
+ Story:- Sally is a consumer visting our site to buildout her list of items she'll purchase from our store front.
+ Scope:- She'll enterthe listing into an input field.  When she submits,the item 
+  item will be placed in a item container to be displayone the page.
+ -API: INVENTORY system & Invoicing system. 
+  LOE: 30mins
+  Risks: Inventory API has had reliability
+
+
+Psuedo code
+   - input field and submit button trigger a submit event
+   hitting return while in the input field will also trigger a submit event
+   function to listen for the submit event (preventDefault)
+   get the value from the input 
+   send the value to the addItem method
+   need a render function to display the item container
+   each item container will include check and delete buttons
+
+- check and uncheck items on the list by clicking the "Check" button
+ story: Sally wants to cross items off the lsit after she gets them
+  she presses the check button and then it should put a line through that item
+  scope: How we will generate the container in the dom.
+  API:
+  LOE: 20mins
+  Risks: The default behavior of the button. 
+
+Psuedo code
+clicking checkbutton will trigger a toggle an item's check state 
+through toggleCheck function()
+toggleCheck function will toggle a line-though the item name
+re-renders the list containers
+
+- permanently remove items from the list
+story: Sally wants the ability to remove itmes off her shopping list
+scope: How it will interact with other containers. So, the selected item 
+container will be removed from the page.  And any remaining containers will be redisplayed.
+API:
+LOE: 20
+Risk: 
+- WILL THE remining item containers be displayed property 
+
+Psudeo code
+clicking deleteButton will trigger an event function that deletes the item container
+the deleteItem function will remove the selected item container and re-render the 
+remaining item list containers
+
+// Additionally:
+
+// You must use a CDN-hosted version of jQuery
+// Put your application code in a file called app.js and link to it in index.html
+// Be sure to put both script elements at the bottom of the <body> element.
+// Do not alter index.html or main.css other than adding the links to the external JavaScript. Write JavaScript code that works with the existing HTML and CSS to implement the required features.
+// Hint: you may find it helpful to read up on and use the following jQuery methods: .submit(), preventDefault(), toggleClass(), and closest
+
+What does the state look like?
+var state = {
+	items: [
+		{title:"apples", checked: false	},
+		{title:"oranges", checked:false},
+
+		]
+}
+find item function which finds and returns items from the state object
+
+
+var render = function(){
+	//clears existing containers from DOM
+	//renders active list item containers
+}
+
+eventListeners: addItem,
+				checkItem,
+				deleteItem
+
