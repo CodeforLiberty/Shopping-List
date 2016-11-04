@@ -5,10 +5,10 @@ In terms of user experience, your shopping list app must allow users to:
 1. enter items they need to purchase by entering text and hitting "Return" or 
 clicking the "Add item" button
  
-  Story: Sally is a consumer visting our site to buildout her list of items she'll purchase from our store front.
-  Scope:- She'll enterthe listing into an input field.  When she submits, the item  will be placed in a item container to be displayone the page.
+  Story: Sally is a consumer visiting our site to buildout her list of items she'll purchase from our store front.
+  Scope:- She'll enter the listing into an input field.  When she submits, the item  will be placed in a item container to be display on the page.
   API: INVENTORY system & Invoicing system. 
-  Psuedo code
+  Pseudo code
     - input field and submit button trigger a submit event
     - hitting return from the input field will also trigger a submit event
     - function to listen for the submit event (preventDefault)
@@ -20,11 +20,11 @@ clicking the "Add item" button
   Risks: Inventory API has had reliability issues
 
 2. check and uncheck items on the list by clicking the "Check" button
-  Story: Sally wants to cross items off the lsit after she gets them.  When she presses the check button, it toggle a line through that item
+  Story: Sally wants to cross items off the list after she gets them.  When she presses the check button, it toggle a line through that item
   Scope: How we will generate the container in the dom.
   API:
-  Psuedo code
-    - clicking checkbutton will trigger a toggle an item's check state through toggleChecked()
+  Pseudo code
+    - clicking check button will trigger a toggle an item's check state through toggleChecked()
     - toggleCheck function will toggle a line-though the selected list item container's item name 
     - Render the updated list containers
   LOE: 20mins
@@ -32,16 +32,18 @@ clicking the "Add item" button
 
 
 3. permanently remove items from the list
-  Story: Sally wants the ability to remove itmes off her shopping list
+  Story: Sally wants the ability to remove items off her shopping list
   Scope: How it will interact with other containers. So, the selected item 
   container will be removed from the page.  And any remaining containers will be redisplayed.
   API:
-  Psudeo code
+  Pseudo code
     - clicking deleteButton will trigger an event function that deletes the item container
     - the deleteItem function will remove the selected item container and re-render the 
     - remaining item list containers
   LOE: 20
-  Risk:  WILL THE remining item containers be displayed property 
+  Risk:  WILL THE remaining item containers be displayed property 
+
+4. (added) Remove example containers on initial load
 
 # Code:
 
@@ -49,7 +51,7 @@ clicking the "Add item" button
   var state = {
   	items: [
   		{title:"apples", checked: false	},
-  		{title:"oranges", checked:false},
+  		{title:"oranges", checked: false},
   		]
   }
 
@@ -66,7 +68,7 @@ clicking the "Add item" button
   deleteItem()    // deletes the selected item from the state item array
 
 
-Additional Requirements/Contraints:
+Additional Requirements/Constraints:
 
 - You must use a CDN-hosted version of jQuery
 - Put your application code in a file called app.js and link to it in index.html
