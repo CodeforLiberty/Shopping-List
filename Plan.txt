@@ -45,17 +45,18 @@ clicking the "Add item" button
 
 4. (added) Remove example containers on initial load
 
-# Code:
+# Code/functions:
 
-// State Functions
+// State Object/Functions
   var state = {
   	items: [
-  		{title:"apples", checked: false	},
-  		{title:"oranges", checked: false},
-  		]
+  		{title:"apples", checked: false, id: 27	},
+  		{title:"oranges", checked: false}, id: 34}
+  		],
+        counter: 0  // use to generate a unique item id
   }
 
-  findItem() // finds and returns items from the state object
+  findItem() // finds items in state object by comparing clicked list item data-id to state item’s id
 
 // Render Functions
   renderItems()
