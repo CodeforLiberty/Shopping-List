@@ -1,10 +1,10 @@
-// State Modification Functions
+// State interaction Functions
 var state = {
 	items: []
 }
 
-// generates psuedo GUID ... since it uses Math.random
-// but should be enough for our purposes
+// generates psuedo GUID ... psuedo since it uses Math.random
+// but should be random enough for our purposes
 function generateID() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
@@ -12,14 +12,20 @@ function generateID() {
   });
 }
 
-function findItem(state, id) {
+// find a state item by compairing the state item id to the container's GUID
+function findItem(state, GUID){
   var foundID = -1;
   state.items.forEach(function(item, index){
-    if (item.id === id) {
+    if (item.id === GUID) {
       foundID = index;
     }
   });
+  //TODO: Add error handling if foundID is -1 (item not found)
   return foundID;
+}
+
+function itemNotFound(err) {
+  // TODO: Add error handling/notification
 }
 
 function addItem(state, name) {
@@ -33,9 +39,9 @@ function addItem(state, name) {
 	state.items.push(item);
 }
 
-function toggleChecked(state, id) {
+function toggleChecked(state, GUID) {
 	// toggle selected item  line-through state 
-	var foundID = findItem(state, id);
+	var foundID = findItem(state, GUID);
 	if (foundID > -1) {
 		if(state.items[foundID].checked) {
 			state.items[foundID].checked = false;
@@ -43,15 +49,17 @@ function toggleChecked(state, id) {
 			state.items[foundID].checked = true;
 		}
 	}
+    // TOD: Add error handling if foundID = -1 (item wasn't found)
 }
 
-function deleteItem(state, id) {
+function deleteItem(state, GUID) {
 	// find item_num within state.items
 	// remove found item from state.items
-	var foundID = findItem(state, id);
+	var foundID = findItem(state, GUID);
 	if (foundID > -1) {
 		state.items.splice(foundID, 1);
 	}
+  // TOD: Add error handling if foundID = -1 (item wasn't found)
 }
 
 
@@ -90,16 +98,16 @@ $(function(){
   // check an item
   $(".shopping-list").on('click', '.shopping-item-toggle', function(event){
     event.preventDefault();
-    var id = $(event.target).closest("li").find("[data-id]").data("id");
-    toggleChecked(state, id);
+    var GUID = $(event.target).closest("li").find("[data-id]").data("id");
+    toggleChecked(state, GUID);
     renderItems(state, $('.shopping-list'));
   });
   
   // delete an item
   $(".shopping-list").on('click', '.shopping-item-delete', function(event){
     event.preventDefault();
-    var id = $(event.target).closest("li").find("[data-id]").data("id");
-    deleteItem(state, id)
+    var GUID = $(event.target).closest("li").find("[data-id]").data("id");
+    deleteItem(state, GUID)
     renderItems(state, $('.shopping-list'));
   });
 });
